@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required|string|min:6',
         ]);
     }
 
@@ -61,20 +62,32 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(Request $request)
+    protected function create(array $data)
     {
-        var_dump($request)
-        // echo gettype($request);
-        // return User::create($request->all());
-        return '<script> console.log('.$request.')</script>';
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 
-
-    protected function index()
+    public function register(Request $request)
     {
-      $users = User::latest()->paginate(5);
+      $data = array(
+        'name'  => $request->get('name'),
+        'email'  => $request->get('email'),
+        'password' => $request->get('password'),
+        'password_confirmation' => $request->get('password_confirmation')
+      );
 
-      return view('users.index',compact('users'))
-          ->with('i', (request()->input('page', 1) - 1) * 5);
+      $validator = app('App\Http\Controllers\Auth\RegisterController')->validator($data);
+      if ($validator->fails()) {
+          return response($validator->messages(), 200);
+      } else {
+          $user = app('App\Http\Controllers\Auth\RegisterController')->create($data);
+          return response()->json([
+                  'message'=> ['Server Stored']
+              ]);
+      }
     }
 }

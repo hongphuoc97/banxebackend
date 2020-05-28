@@ -3,44 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class AuthenticationController extends Controller
 {
-  function index()
-  {
-   return view('login');
-  }
-  function checklogin(Request $request)
+    public function index()
     {
-     $this->validate($request, [
+        return view('login');
+    }
+    public function checklogin(Request $request)
+    {
+        $this->validate($request, [
       'email'   => 'required|email',
-      'password'  => 'required|alphaNum|min:3'
+      'password'  => 'required|string|min:6'
      ]);
 
-     $user_data = array(
+        $user_data = array(
       'email'  => $request->get('email'),
       'password' => $request->get('password')
      );
 
-     if(Auth::attempt($user_data))
-     {
-      return redirect('main/successlogin');
-     }
-     else
-     {
-      return back()->with('error', 'Wrong Login Details');
-     }
-
+        if (Auth::attempt($user_data)) {
+            return AuthenticationController::successlogin();
+        } else {
+            return back()->with('error', 'Wrong Login Details');
+        }
     }
 
-    function successlogin()
+    public function successlogin()
     {
-     return view('successlogin');
+        return view('welcome');
     }
 
-    function logout()
+    public function logout()
     {
-     Auth::logout();
-     return redirect('main');
+        Auth::logout();
+        return redirect('main');
     }
 }

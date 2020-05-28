@@ -18,9 +18,9 @@
       <div class="container box">
          <h3 align="center">Simple Login System in Laravel</h3>
          <br />
-         @if(isset(Auth::user()->email))
+         <!-- @if(isset(Auth::user()->email))
          <script>window.location="/main/successlogin";</script>
-         @endif
+         @endif -->
          @if ($message = Session::get('error'))
          <div class="alert alert-danger alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -36,7 +36,7 @@
             </ul>
          </div>
          @endif
-         <form method="post" action="{{ url('/main/checklogin') }}">
+         <form method="post" action="{{ url('/login') }}">
             {{ csrf_field() }}
             <div class="form-group">
                <label>Enter Email</label>
