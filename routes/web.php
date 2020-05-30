@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Categories;
 
 Route::get('/', function () {
     return view('index');
@@ -27,14 +27,11 @@ Route::get('/introduce', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/admin', function () {
-  if (Auth::check())
-  {
-    return view('admin_index');
-  }else{
-    return redirect('login');
-  }
-});
+
+Route::resources([
+  'admin/category' => 'CategoryController',
+  'admin' => 'AdminController'
+  ]);
 Route::resource('articles', 'ArticleController');
 Route::resource('demo', 'DemoController');
 

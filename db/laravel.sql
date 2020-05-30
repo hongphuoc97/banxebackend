@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 28, 2020 lúc 04:08 CH
+-- Thời gian đã tạo: Th5 30, 2020 lúc 03:06 CH
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.1.1
 
@@ -45,8 +45,34 @@ INSERT INTO `articles` (`id`, `title`, `body`, `updated_at`, `created_at`) VALUE
 (4, 'test4', 'bodytest4', '', '2020-05-26 09:10:19'),
 (5, 'test5', 'bodytest5', '', '2020-05-26 09:11:10'),
 (6, 'test6', 'bodytest6', '', '2020-05-26 09:11:10'),
-(7, 'test7', 'bodytest7', '', '2020-05-26 09:12:05'),
 (8, 'test8', 'bodytest8', '', '2020-05-26 09:12:05');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `order_value` tinyint(4) NOT NULL DEFAULT '1',
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `order_value`, `updated_at`, `created_at`) VALUES
+(1, 'MÁY XÚC LẬT SDLG', 1, '2020-05-30 03:16:58', '2020-05-29 12:48:42'),
+(2, 'MÁY XÚC LẬT MINI', 2, '2020-05-30 03:23:11', '2020-05-29 12:48:42'),
+(3, 'MÁY NÂNG', 3, '2020-05-30 03:32:40', '2020-05-30 03:32:11'),
+(4, 'MÁY MÚC', 4, '2020-05-30 03:32:50', '2020-05-30 03:32:28'),
+(5, 'XE CHUYÊN DỤNG', 5, '2020-05-30 03:38:44', '2020-05-30 03:33:15'),
+(6, 'XE BEN CHẠY MỎ', 6, '2020-05-30 03:38:51', '2020-05-30 03:33:32'),
+(7, 'PHỤ TÙNG', 7, '2020-05-30 03:49:00', '2020-05-30 03:33:44');
 
 -- --------------------------------------------------------
 
@@ -69,10 +95,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `updated_at`, `created_at`, `remember_token`) VALUES
-(1, 'Phuoc', 'nguyenphuoc2a1@gmail.com', '123', '2020-05-26 07:18:56', '2020-05-26 07:18:56', NULL),
-(2, 'Phuoc', 'nguyenphuoc2a1@gmail.com', '123', '2020-05-26 07:19:58', '2020-05-26 07:19:58', NULL),
-(3, 'Phuoc', 'nguyenphuoc2a1@gmail.com', '123', '2020-05-26 07:24:37', '2020-05-26 07:24:37', NULL),
-(4, 'phuoc', 'nguyenphuoc2a2@gmail.com', '$2y$10$y9AwzJKiQ2Yn3cAOu.szzOgKJiIzLjKhQYvyXVHEsLXxNtSjgyRw6', '2020-05-28 07:06:07', '2020-05-28 07:06:07', NULL);
+(4, 'phuoc', 'nguyenphuoc2a2@gmail.com', '$2y$10$y9AwzJKiQ2Yn3cAOu.szzOgKJiIzLjKhQYvyXVHEsLXxNtSjgyRw6', '2020-05-28 07:06:07', '2020-05-28 07:06:07', 'MLr344roz0q1EZ11I1YNm7svqbQ3DXdQYXwHsXJohbJ9PkgGMaILiOa8ELXZ');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -85,10 +108,17 @@ ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -99,6 +129,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT cho bảng `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT cho bảng `users`
 --

@@ -10,20 +10,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                <ul class="nav navbar-nav">
-                  <li class=""><a href="${pageContext.request.contextPath}/">DANH MỤC</a></li>
-                  <li class=""><a href="${pageContext.request.contextPath}/">SẢN PHẨM</a></li>
-                  <li class="active"><a href="${pageContext.request.contextPath}/">CẤU HÌNH</a></li>
-                  <!--<c:forEach items="${categories}" var="item">
-                     <c:if test="${item.type == 1}">
-                        <li><a href="#">${item.name}</a></li>
-                     </c:if>
-                     </c:forEach> -->
-               </ul>
+                  <li class=""><a href="/admin/category">DANH MỤC</a></li>
+                  <li class=""><a href="/admin/product">SẢN PHẨM</a></li>
+                  <li class="active"><a href="/admin/setting">CẤU HÌNH</a></li>
                <ul class="nav navbar-nav navbar-right">
-                  <!--<li><a href="${pageContext.request.contextPath}/cart" >
-                     <span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng
-                     </a>
-                     </li>-->
+
                      @if(isset(Auth::user()->email))
                      <li>
                         <a href="#">

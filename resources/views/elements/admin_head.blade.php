@@ -11,7 +11,7 @@
       <script
          src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
       <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-      <script src="./js/style.js"></script>
-      <link href="./css/style.css" rel="stylesheet" style="text/css" />
-      <link href="./css/animate.css" rel="stylesheet" style="text/css" />
+      <script src="{{ asset('/js/style.js') }}"></script>
+      <link href="{{ asset('/css/style.css') }}" rel="stylesheet" style="text/css" />
+      <link href="{{ asset('/css/animate.css') }}" rel="stylesheet" style="text/css" />
    </head>
