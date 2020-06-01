@@ -11,6 +11,7 @@ class AuthenticationController extends Controller
     {
         return view('login');
     }
+
     public function checklogin(Request $request)
     {
         $this->validate($request, [
@@ -24,20 +25,16 @@ class AuthenticationController extends Controller
      );
 
         if (Auth::attempt($user_data)) {
-            return AuthenticationController::successlogin();
+            return redirect('/admin');
         } else {
-            return back()->with('error', 'Wrong Login Details');
+            return back()->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng');
         }
-    }
-
-    public function successlogin()
-    {
-        return view('welcome');
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect('main');
+        return redirect('/');
     }
 }
+?>
