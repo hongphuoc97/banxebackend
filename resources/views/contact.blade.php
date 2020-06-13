@@ -2,11 +2,6 @@
 @section('content')
 <div class="container-fluid" >
     @include('elements.carousel')
-    <c:if test="${msg != null }">
-       <div class="alert alert-success" style="margin:10px 0px 0px 0px">
-          <strong>Thông báo!</strong> ${msg}.
-       </div>
-    </c:if>
     <div class="col-md-3 visible-md visible-lg">
        <ul class="list-group">
           <li class="list-group-item panelactive"><span class="glyphicon glyphicon-menu-hamburger"> </span> DANH MUC SAN PHAM</li>

@@ -2,19 +2,12 @@
 @section('content')
 <div class="container-fluid" >
     @include('elements.carousel')
-    <!-- <c:if test="${msg != null }">
-       <div class="alert alert-success" style="margin:10px 0px 0px 0px">
-          <strong>Thông báo!</strong> ${msg}.
-       </div>
-    </c:if> -->
-
     <div class="col-md-3 visible-md visible-lg">
        <ul class="list-group">
-          <li class="list-group-item panelactive"><span class="glyphicon glyphicon-menu-hamburger"> </span> DANH MUC SAN PHAM</li>
-          <li class="list-group-item"><a>MÁY XÚC LẬT SDLG</a></li>
-          <li class="list-group-item"><a>MÁY XÚC LẬT MINI</a></li>
-          <li class="list-group-item"><a>MÁY NÂNG</a></li>
-          <li class="list-group-item"><a>MÁY MÚC</a></li>
+          <li class="list-group-item panelactive"><span class="glyphicon glyphicon-menu-hamburger"> </span> DANH MỤC SẢN PHẨM</li>
+          @foreach($categories as $item)
+              <li class="list-group-item"><a href="/product?category={{$item->id}}">{{$item->name}}</a></li>
+          @endforeach
         </ul>
         <div class="panel panel-default">
           <div class="panel-heading"><b>THANH TOÁN NHANH GỌN</b></div>
@@ -58,22 +51,25 @@
             </ul>
          </div>
          @endif
-       <c:forEach items="${categories}" var="item">
-          <c:if test="${fn:length(item.products) gt 0}">
+         <?php
+              use App\Categories;
+       	  ?>
+       @foreach ($categories as $category)
              <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
-                <div class="panel-heading">MÁY XÚC LẬT SDLG</div>
+                <div class="panel-heading"><a href="/product?category={{$category->id}}">{{$category->name}}</a></div>
              </div>
-             <c:forEach items="${products}" var="productItem">
-                <c:if test="${productItem.category.id == item.id }">
+             @foreach (Categories::find($category->id)->product as $itemProduct)
+                @if($itemProduct->categories_id == $category->id)
                    <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
                       <div class="img-thumbnail product col-xs-12">
                          <div class="cus-product_imge">
-                            <img src="./images/p1.jpg"
+                            <img src="{{$itemProduct->file_path}}"
                                style="width: 100%; height: 190px; object-fit: cover;" />
                          </div>
                          <div class="cus-info" style="margin-top: 10px">
-                            <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
+                            <span class="glyphicon glyphicon-tags"></span> <span>{{$itemProduct->name}}</span><br /> <span class="glyphicon glyphicon-earphone"></span>
                             <span>
+
                                Điện thoại:
                                096.5707.022
                             </span>
@@ -82,248 +78,14 @@
                             <div class="cus-action">
                                <a href="tel:0965707022" class="btn btn-success">Mua
                                ngay</a>
-                               <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
+                               <a href="/product/{{ $itemProduct->id }}" class="btn btn btn-warning">Xem chi tiết</a>
                             </div>
                          </div>
                       </div>
                    </div>
-
-                   <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                      <div class="img-thumbnail product col-xs-12">
-                         <div class="cus-product_imge">
-                            <img src="./images/p2.jpg"
-                               style="width: 100%; height: 190px; object-fit: cover;" />
-                         </div>
-                         <div class="cus-info" style="margin-top: 10px">
-                            <span class="glyphicon glyphicon-tags"></span> <span>Sản
-                            phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                            <span>
-                               Điện thoại:
-                               096.5707.022
-                            </span>
-                         </div>
-                         <div class="cus-fullsize">
-                            <div class="cus-action">
-                               <a href="tel:0965707022" class="btn btn-success">Mua
-                               ngay</a>
-                               <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-
-                   <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                      <div class="img-thumbnail product col-xs-12">
-                         <div class="cus-product_imge">
-                            <img src="./images/p2.jpg"
-                               style="width: 100%; height: 190px; object-fit: cover;" />
-                         </div>
-                         <div class="cus-info" style="margin-top: 10px">
-                            <span class="glyphicon glyphicon-tags"></span> <span>Sản
-                            phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                            <span>
-                               Điện thoại:
-                               096.5707.022
-                            </span>
-                         </div>
-                         <div class="cus-fullsize">
-                            <div class="cus-action">
-                               <a href="tel:0965707022" class="btn btn-success">Mua
-                               ngay</a>
-                               <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-
-                   <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                      <div class="img-thumbnail product col-xs-12">
-                         <div class="cus-product_imge">
-                            <img src="./images/p2.jpg"
-                               style="width: 100%; height: 190px; object-fit: cover;" />
-                         </div>
-                         <div class="cus-info" style="margin-top: 10px">
-                            <span class="glyphicon glyphicon-tags"></span> <span>Sản
-                            phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                            <span>
-                               Điện thoại:
-                               096.5707.022
-                            </span>
-                         </div>
-                         <div class="cus-fullsize">
-                            <div class="cus-action">
-                               <a href="tel:0965707022" class="btn btn-success">Mua
-                               ngay</a>
-                               <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-
-                   <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                      <div class="img-thumbnail product col-xs-12">
-                         <div class="cus-product_imge">
-                            <img src="./images/p2.jpg"
-                               style="width: 100%; height: 190px; object-fit: cover;" />
-                         </div>
-                         <div class="cus-info" style="margin-top: 10px">
-                            <span class="glyphicon glyphicon-tags"></span> <span>Sản
-                            phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                            <span>
-                               Điện thoại:
-                               096.5707.022
-                            </span>
-                         </div>
-                         <div class="cus-fullsize">
-                            <div class="cus-action">
-                               <a href="tel:0965707022" class="btn btn-success">Mua
-                               ngay</a>
-                               <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </c:if>
-             </c:forEach>
-          </c:if>
-
-          <!--MOI-->
-          <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
-             <div class="panel-heading">MÁY XÚC LẬT MINI</div>
-          </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                   <div class="img-thumbnail product col-xs-12">
-                      <div class="cus-product_imge">
-                         <img src="./images/p1.jpg"
-                            style="width: 100%; height: 190px; object-fit: cover;" />
-                      </div>
-                      <div class="cus-info" style="margin-top: 10px">
-                         <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                         <span>
-                            Điện thoại:
-                            096.5707.022
-                         </span>
-                      </div>
-                      <div class="cus-fullsize">
-                         <div class="cus-action">
-                            <a href="tel:0965707022" class="btn btn-success">Mua
-                            ngay</a>
-                            <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                   <div class="img-thumbnail product col-xs-12">
-                      <div class="cus-product_imge">
-                         <img src="./images/p1.jpg"
-                            style="width: 100%; height: 190px; object-fit: cover;" />
-                      </div>
-                      <div class="cus-info" style="margin-top: 10px">
-                         <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                         <span>
-                            Điện thoại:
-                            096.5707.022
-                         </span>
-                      </div>
-                      <div class="cus-fullsize">
-                         <div class="cus-action">
-                            <a href="tel:0965707022" class="btn btn-success">Mua
-                            ngay</a>
-                            <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                   <div class="img-thumbnail product col-xs-12">
-                      <div class="cus-product_imge">
-                         <img src="./images/p1.jpg"
-                            style="width: 100%; height: 190px; object-fit: cover;" />
-                      </div>
-                      <div class="cus-info" style="margin-top: 10px">
-                         <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                         <span>
-                            Điện thoại:
-                            096.5707.022
-                         </span>
-                      </div>
-                      <div class="cus-fullsize">
-                         <div class="cus-action">
-                            <a href="tel:0965707022" class="btn btn-success">Mua
-                            ngay</a>
-                            <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                   <div class="img-thumbnail product col-xs-12">
-                      <div class="cus-product_imge">
-                         <img src="./images/p1.jpg"
-                            style="width: 100%; height: 190px; object-fit: cover;" />
-                      </div>
-                      <div class="cus-info" style="margin-top: 10px">
-                         <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                         <span>
-                            Điện thoại:
-                            096.5707.022
-                         </span>
-                      </div>
-                      <div class="cus-fullsize">
-                         <div class="cus-action">
-                            <a href="tel:0965707022" class="btn btn-success">Mua
-                            ngay</a>
-                            <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                   <div class="img-thumbnail product col-xs-12">
-                      <div class="cus-product_imge">
-                         <img src="./images/p1.jpg"
-                            style="width: 100%; height: 190px; object-fit: cover;" />
-                      </div>
-                      <div class="cus-info" style="margin-top: 10px">
-                         <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                         <span>
-                            Điện thoại:
-                            096.5707.022
-                         </span>
-                      </div>
-                      <div class="cus-fullsize">
-                         <div class="cus-action">
-                            <a href="tel:0965707022" class="btn btn-success">Mua
-                            ngay</a>
-                            <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                   <div class="img-thumbnail product col-xs-12">
-                      <div class="cus-product_imge">
-                         <img src="./images/p1.jpg"
-                            style="width: 100%; height: 190px; object-fit: cover;" />
-                      </div>
-                      <div class="cus-info" style="margin-top: 10px">
-                         <span class="glyphicon glyphicon-tags"></span> <span>Sản phẩm: L975F (5÷6,5m3)</span><br /> <span class="glyphicon glyphicon-earphone"></span>
-                         <span>
-                            Điện thoại:
-                            096.5707.022
-                         </span>
-                      </div>
-                      <div class="cus-fullsize">
-                         <div class="cus-action">
-                            <a href="tel:0965707022" class="btn btn-success">Mua
-                            ngay</a>
-                            <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-       </c:forEach>
+                   @endif
+             @endforeach
+       @endforeach
     </div>
  </div>
 @endsection

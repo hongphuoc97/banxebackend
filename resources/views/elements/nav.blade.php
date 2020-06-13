@@ -15,13 +15,13 @@
                <a class="dropdown-toggle"
                   data-toggle="dropdown" href="#">SẢN PHẨM <span class="caret"></span></a>
                <ul class="dropdown-menu">
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">MÁY XÚC LẬT SDLG</a></li>
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">MÁY XÚC LẬT MINI</a></li>
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">MÁY NÂNG</a></li>
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">MÁY MÚC</a></li>
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">XE CHUYÊN DỤNG</a></li>
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">XE BEN CHẠY MỎ</a></li>
-                  <li><a href="${pageContext.request.contextPath}/category/${item.id}/product">PHỤ TÙNG</a></li>
+                 <?php
+                   use App\Categories;
+                   $categories = Categories::orderBy('order_value', 'ASC')->get();
+                 ?>
+                 @foreach ($categories as $item)
+                      <li><a href="/product?category={{$item->id}}">{{ $item->name }}</a></li>
+                 @endforeach
                </ul>
             </li>
             <li class=""><a href="/contact">TƯ VẤN MUA XE</a></li>

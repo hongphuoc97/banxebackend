@@ -9,9 +9,9 @@
    <div class="col-md-3 visible-md visible-lg">
       <ul class="list-group">
          <li class="list-group-item panelactive"><span class="glyphicon glyphicon-menu-hamburger"> </span> ĐIỀU HƯỚNG</li>
-         <li class="list-group-item"><a>DANH MỤC</a></li>
-         <li class="list-group-item"><a>SẢN PHẨM</a></li>
-         <li class="list-group-item"><a>CẤU HÌNH</a></li>
+         <li class="list-group-item active"><a href="/admin">DANH MỤC</a></li>
+         <li class="list-group-item"><a href="/admin/product">SẢN PHẨM</a></li>
+         <li class="list-group-item"><a href="/admin/config">CẤU HÌNH</a></li>
       </ul>
    </div>
    <!-- <div class="row-fluid clearfix"> -->

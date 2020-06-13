@@ -6,13 +6,13 @@
                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                   class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="/admin">ADMIN CONTROL PANEL</a>
+               <a class="navbar-brand" href="/admin/">ADMIN CONTROL PANEL</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                <ul class="nav navbar-nav">
-                  <li class=""><a href="/admin/category">DANH MỤC</a></li>
-                  <li class=""><a href="/admin/product">SẢN PHẨM</a></li>
-                  <li class="active"><a href="/admin/setting">CẤU HÌNH</a></li>
+                  <li class=""><a href="/admin/category/">DANH MỤC</a></li>
+                  <li class=""><a href="/admin/product/">SẢN PHẨM</a></li>
+                  <li class=""><a href="/admin/setting/">CẤU HÌNH</a></li>
                <ul class="nav navbar-nav navbar-right">
 
                      @if(isset(Auth::user()->email))
