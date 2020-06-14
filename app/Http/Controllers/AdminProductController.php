@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Configuration;
 use App\Specifications;
 use App\MasterSpecifications;
 use Auth;
@@ -12,17 +13,28 @@ use Illuminate\Support\Facades\Input;
 
 class AdminProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+      $config = Configuration::find(1);
+
         if (Auth::check()) {
-            $products = Product::latest()->paginate(5);
+          if($request->get("q") != ""){
+            $products = Product::Where('name','LIKE', '%'.$request->get("q").'%')->paginate(5);
 
             return view('admin_product', compact('products'))
-           ->with('i', (request()->input('page', 1) - 1) * 5);
+              ->with('config', $config)
+              ->with('i', (request()->input('page', 1) - 1) * 5);
+          }
+
+            $products = Product::latest()->paginate(5);
+            return view('admin_product', compact('products'))
+              ->with('config', $config)
+              ->with('i', (request()->input('page', 1) - 1) * 5);
         } else {
             return redirect('login');
         }
     }
+
     public function store(Request $request)
     {
         $file = $request->file_path;
@@ -38,16 +50,19 @@ class AdminProductController extends Controller
         $product = new Product;
         $product->name = $request->get('name');
         $product->categories_id = $request->get('categories_id');
+        $product->description = $request->get('description');
         $product->file_path = $filePath;
         $product->save();
         $data = Input::get("specifications");
-        for ($i=1; $i <= count($data['name']); $i++) {
-            $product->specifications()->saveMany([
-          new Specifications(['name' => $data['name'][$i],
-          'value' => $data['value'][$i],
-          'unit' => $data['unit'][$i],
-          'product_id' => $product->id])
-        ]);
+        if($data!= null){
+            for ($i=1; $i <= count($data['name']); $i++) {
+                $product->specifications()->saveMany([
+                    new Specifications(['name' => $data['name'][$i],
+                        'value' => $data['value'][$i],
+                        'unit' => $data['unit'][$i],
+                        'product_id' => $product->id])
+                ]);
+            }
         }
 
         return redirect('admin/product/')
@@ -56,9 +71,10 @@ class AdminProductController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $data = $request->all();
-        Product::find($id)->update($data);
+        $product = Product::find($id);
+        $data["file_path"] = $product->file_path;
+        $product->update($data);
 
         foreach (Product::find($id)->specifications as $specification) {
             foreach ($data["specifications"] as $specificationLocal) {

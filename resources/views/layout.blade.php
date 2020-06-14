@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 	@include('elements.head')
 <body>
 	@include('elements.nav')

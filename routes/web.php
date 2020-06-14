@@ -35,10 +35,10 @@ use App\Categories;
     'admin/' => 'AdminController',
     'admin/category' => 'CategoryController',
     'admin/product' => 'AdminProductController',
+    'admin/config' => 'ConfigurationController',
     'admin/specifications' => 'SpecificationsController'
   ]);
 
-  // Route::post('admin/productupdate/{id}', 'AdminProductController@update');
   //login & logout
   Route::get('login', 'AuthenticationController@index');
   Route::post('/login', 'AuthenticationController@checklogin');

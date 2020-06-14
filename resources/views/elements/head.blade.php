@@ -1,9 +1,14 @@
+<?php
+  use App\Configuration;
+  $config = Configuration::find(1);
+?>
 <head>
-   <title>HAI HOANG</title>
+   <title>{{$config->title}}</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0"
       charset="utf-8">
    <meta name="_csrf" content="${_csrf.token}">
    <meta name="_csrf_header" content="${_csrf.headerName}">
+   <meta name="description" content="Máy xúc lật Đà Nẵng, Miền Trung, Máy cơ giới giá tốt, chất lượng cao">
    <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
    <script
@@ -12,6 +17,6 @@
       src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
    <script src="{{ asset('js/style.js') }}"></script>
-   <link href="{{ asset('css/style.css') }}" rel="stylesheet" style="text/css" />
-   <link href="{{ asset('css/animate.css') }}" rel="stylesheet" style="text/css" />
+   <link href="{{ asset('css/style.css') }}" rel="stylesheet" style="text:css" />
+   <link href="{{ asset('css/animate.css') }}" rel="stylesheet" style="text:css" />
 </head>

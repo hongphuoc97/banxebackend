@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categories;
 use App\Product;
+use App\Configuration;
 
 class MainController extends Controller
 {
     public function index()
     {
         $categories = Categories::orderBy('order_value', 'ASC')->get();
-
+        $config = Configuration::find(1);
         return view('index')
+           ->with('config', $config)
            ->with('categories', $categories);
     }
 

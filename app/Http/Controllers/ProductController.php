@@ -15,9 +15,18 @@ class ProductController extends Controller
     public function index(Request $request)
     {
       $category_id = $request->input('category');
+      $name = $request->input('q');
       if($category_id != ""){
         $products = Product::where('categories_id', $category_id)->paginate(5);
         $category = Categories::where('id', $category_id)->get();
+        return view('products',compact('products'))
+           ->with('category', $category);
+      }
+      if($name != ""){
+        $products = Product::where('name','LIKE','%'.$name.'%')->paginate(5);
+        $itemCategory = new Categories();
+        $itemCategory->name = "Tất cả sản phẩm";
+          $category = array($itemCategory);
         return view('products',compact('products'))
            ->with('category', $category);
       }

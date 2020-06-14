@@ -12,19 +12,15 @@
             style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe2.jpg') }}" alt="xuclatmientrung"
+         <img src="{{ asset('images/xe2.jpg') }}" alt="xuclatdanang"
             style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe3.jpg') }}" alt="xuclatmientrung"
+         <img src="{{ asset('images/xe3.jpg') }}" alt="danang"
             style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe4.jpg') }}" alt="xuclatmientrung"
-            style=" object-fit: cover;">
-      </div>
-      <div class="item">
-         <img src="{{ asset('images/xe5.jpg') }}" alt="xuclatmientrung"
+         <img src="{{ asset('images/xe5.jpg') }}" alt="xexuclat"
             style="object-fit: cover;">
       </div>
    </div>
