@@ -50,6 +50,10 @@ div.product {
     padding: 5px;
 }
 
+.cus-product_imge{
+    min-height: 200px;
+}
+
 .cus-layout {
     padding: 10px;
 }
@@ -216,10 +220,20 @@ footer.page-footer a {
     color: #fff;
 }
 
+@media screen and (max-width: 768px){
+    .cus-layout{
+        padding: 10px 0;
+    }
+
+    .col-md-9{
+        padding: 0;
+    }
+}
+
 /* phone button */
 .mypage-alo-phone {
     position: fixed !important;
-    bottom: -10px !important;
+    bottom: -4px !important;
     background-color: transparent;
     width: 110px;
     height: 110px;

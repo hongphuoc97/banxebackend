@@ -47,7 +47,7 @@
         <!-- <div class="row-fluid clearfix"> -->
         <div class="col-md-9 clearfix">
             <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
-                <div class="panel-heading">GIỚI THIỆU</div>
+                <div class="panel-heading"><h1>GIỚI THIỆU</h1></div>
             </div>
             <h4><b>Chúng tôi, công ty máy công trình SDLG liên doanh VOLVO<b></h4>
             <p>

@@ -8,19 +8,19 @@
    <!-- Wrapper for slides -->
    <div class="carousel-inner">
       <div class="item active">
-         <img src="{{ asset('images/xe1.jpg') }}" alt="xuclatmientrung"
+         <img src="{{ asset('images/xe1.jpg') }}" alt="Xe xuc lat mien trung "
             style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe2.jpg') }}" alt="xuclatdanang"
+         <img src="{{ asset('images/xe2.jpg') }}" alt="xe xuc lat da nang"
             style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe3.jpg') }}" alt="danang"
+         <img src="{{ asset('images/xe3.jpg') }}" alt="xe co gioi da nang"
             style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe5.jpg') }}" alt="xexuclat"
+         <img src="{{ asset('images/xe5.jpg') }}" alt="xe xuc lat"
             style="object-fit: cover;">
       </div>
    </div>

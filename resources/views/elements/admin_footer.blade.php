@@ -47,7 +47,7 @@ $config = Configuration::find(1);
     <!-- Footer Links -->
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-        © 2020 Copyright: <a href="/" style="color: #fff">{{$config->website}}</a>
+        © 2020 Copyright: <a href="${pageContext.request.contextPath}/" style="color: #fff">{{$config->website}}</a>
     </div>
     <!-- Copyright -->
 </footer>

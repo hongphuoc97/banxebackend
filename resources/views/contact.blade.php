@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-9 clearfix">
             <div class="panel panel-primary" style="margin: 10px 0 10px 0">
-                <div class="panel-heading">LIÊN HỆ</div>
+                <div class="panel-heading"><h1>LIÊN HỆ</h1></div>
             </div>
             <div class="wpb_column column_container col-sm-6 col-has-fill">
                 <div class="vc_column-inner vc_custom_1584605381593">

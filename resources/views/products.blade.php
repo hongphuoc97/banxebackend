@@ -21,8 +21,8 @@
                 <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
                     <div class="img-thumbnail product col-xs-12">
                         <div class="cus-product_imge">
-                            <img src="{{$itemProduct->file_path}}"
-                                 style="width: 100%; height: 190px; object-fit: cover;"/>
+                            <img class="lazy" data-src="{{ asset($itemProduct->file_path) }}"
+                                 style="width: 100%; height: 190px; object-fit: cover;" name="{{$itemProduct->name}}" alt="{{$itemProduct->name}}"/>
                         </div>
                         <div class="cus-info" style="margin-top: 10px">
                             <span class="glyphicon glyphicon-tags"></span> <span>{{$itemProduct->name}}</span><br/>

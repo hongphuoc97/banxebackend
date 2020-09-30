@@ -119,36 +119,36 @@
                                     <div id="specification">
                                         @foreach ($masterSpecifications as $item)
                                             @if($item->categories_id == 1)
-                                                <input type="hidden" value="{{ ++$j }}"/>
-                                                <div class="form-group col-sm-4">
-                                                    <label>Tên thông số</label> <input name="specifications[name][{{ $j }}]"
-                                                                                       class="form-control"
-                                                                                       placeholder="" type="text"
-                                                                                       value="{{ $item->name }}" required>
-                                                </div>
-                                                <div class="form-group col-sm-4">
-                                                    <label>Đơn vị tính</label>
-                                                    <select name="specifications[unit][{{ $j }}]" class="form-control" required>
-                                                        @if($item->unit != "")
-                                                            <option value="{{ $item->unit }}">{{ $item->unit }}</option>
-                                                        @else
-                                                            <option value="0">--Trống--</option>
-                                                        @endif
-                                                        <option value="kg">Kg</option>
-                                                        <option value="mm">Mm</option>
-                                                        <option value="l">L</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-sm-4">
-                                                    <label>Thông số</label> <input name="specifications[value][{{ $j }}]"
+                                            <input type="hidden" value="{{ ++$j }}"/>
+                                            <div class="form-group col-sm-4">
+                                                <label>Tên thông số</label> <input name="specifications[name][{{ $j }}]"
                                                                                    class="form-control"
-                                                                                   placeholder="" type="text" required="true">
-                                                    {{--                                                <button id="deleteRow" style="--}}
-                                                    {{--                                                    position: absolute;--}}
-                                                    {{--                                                    top: 29px;--}}
-                                                    {{--                                                    right: 20px;--}}
-                                                    {{--                                                ">Delete</button>--}}
-                                                </div>
+                                                                                   placeholder="" type="text"
+                                                                                   value="{{ $item->name }}" required>
+                                            </div>
+                                            <div class="form-group col-sm-4">
+                                                <label>Đơn vị tính</label>
+                                                <select name="specifications[unit][{{ $j }}]" class="form-control" required>
+                                                    @if($item->unit != "")
+                                                        <option value="{{ $item->unit }}">{{ $item->unit }}</option>
+                                                    @else
+                                                        <option value="0">--Trống--</option>
+                                                    @endif
+                                                    <option value="kg">Kg</option>
+                                                    <option value="mm">Mm</option>
+                                                    <option value="l">L</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-sm-4">
+                                                <label>Thông số</label> <input name="specifications[value][{{ $j }}]"
+                                                                               class="form-control"
+                                                                               placeholder="" type="text" required="true">
+                                                {{--                                                <button id="deleteRow" style="--}}
+                                                {{--                                                    position: absolute;--}}
+                                                {{--                                                    top: 29px;--}}
+                                                {{--                                                    right: 20px;--}}
+                                                {{--                                                ">Delete</button>--}}
+                                            </div>
                                             @endif
                                         @endforeach
                                     </div>
@@ -259,11 +259,11 @@
     <script>
         const rootPath = $("#formSubmit").attr('action');
         const rootUploadFile = $("#formUpload").attr('action');
-
+        
         $("#add-btn").on("click", function(){
             $("formAddNew").trigger("reset");
             $("#specification").empty();
-
+            
             let selectCate = $("select[name='categories_id']").val();
             let specifications = <?php echo json_encode($masterSpecifications) ?>;
             let indexCount = 0;
@@ -308,14 +308,15 @@
                 success: function (data) {
                     $("#specification").empty();
                     $.each(data, function (k, v) {
+                        //console.log(v.name);
                         $("div#specification")
                             .append("<div class='form-group col-sm-4'><label>Tên thông số</label><input type ='hidden' name='specifications[][id]' value='" + v.id + "'/><input name='specifications[][name]' type='text' value='" + v.name + "' class='form-control' required/></div>");
-                        if(v.unit != ''){
-                            $("div#specification").append("<div class='form-group col-sm-4'><label>Đơn vị tính</label><select name='specifications[][unit]' class='form-control' required><option value='" + v.unit + "' >" + v.unit + "</option><option value='kg'>Kg</option><option value='mm'>mm</option><option value='l'>L</option></select></div>");
-                        }else{
-                            $("div#specification").append("<div class='form-group col-sm-4'><label>Đơn vị tính</label><select name='specifications[][unit]' class='form-control' required><option value='0' >-- Trống --</option><option value='kg'>Kg</option><option value='mm'>mm</option><option value='l'>L</option></select></div>");
-                        }
-                        $("div#specification").append("<div class='form-group col-sm-4'><label>Thông số</label><input name='specifications[][value]' type='text' value='" + v.value + "' class='form-control' required/></div>");
+                            if(v.unit != ''){
+                                $("div#specification").append("<div class='form-group col-sm-4'><label>Đơn vị tính</label><select name='specifications[][unit]' class='form-control' required><option value='" + v.unit + "' >" + v.unit + "</option><option value='kg'>Kg</option><option value='mm'>mm</option><option value='l'>L</option></select></div>");
+                            }else{
+                                $("div#specification").append("<div class='form-group col-sm-4'><label>Đơn vị tính</label><select name='specifications[][unit]' class='form-control' required><option value='0' >-- Trống --</option><option value='kg'>Kg</option><option value='mm'>mm</option><option value='l'>L</option></select></div>");
+                            }
+                            $("div#specification").append("<div class='form-group col-sm-4'><label>Thông số</label><input name='specifications[][value]' type='text' value='" + v.value + "' class='form-control' required/></div>");
                     });
                 }
             });
@@ -333,6 +334,7 @@
                     if (data['success'] == 'true') {
                         alert("Cập nhật thành công!")
                         window.location.href = "/admin/product"
+                        //$('#updateModal').modal('toggle');
                     }
                 }
             });
@@ -348,6 +350,7 @@
             let tr = $(this).closest("tr");
             let id = tr.data("id");
             let form = $("#formDelete");
+            // form.find("input[name='id']").val(id);
             form.attr('action', "/admin/product" + "/" + id);
         });
 

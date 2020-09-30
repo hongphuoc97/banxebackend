@@ -11,6 +11,7 @@
 |
 */
 use App\Categories;
+use Illuminate\Http\Request;
 
   //MainController
   Route::resource('/', 'MainController');
@@ -29,7 +30,11 @@ use App\Categories;
   Route::get('/contact', function () {
       return view('contact');
   });
-
+  
+  Route::get('/download/file/glasstype/1040', function () {
+      return response()->download(storage_path("app/public/glasstype.png"));
+  });
+  
   //Admin manipulation
   Route::resources([
     'admin/' => 'AdminController',
