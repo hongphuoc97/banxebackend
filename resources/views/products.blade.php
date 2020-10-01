@@ -1,48 +1,60 @@
 @extends('layout')
 @section('content')
-<div class="container" >
-    @include('elements.carousel')
-    <div class="row-fluid clearfix">
-      <ul class="breadcrumb">
-            <li><a href="#">Trang Chủ</a></li>
-            <li><a href="#">Sản Phẩm</a></li>
-            <li class="active">Máy xúc lật mini</li>
-      </ul>
-    </div>
-    <!-- <c:if test="${msg != null }">
-       <div class="alert alert-success" style="margin:10px 0px 0px 0px">
-          <strong>Thông báo!</strong> ${msg}.
-       </div>
-    </c:if> -->
-    <div class="row-fluid clearfix">
-               <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
-                  <div class="panel-heading">Máy xúc lật MINI</div>
-               </div>
-               <c:forEach items="${product}" var="productItem">
-                     <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
-                        <div class="img-thumbnail product col-xs-12">
-                           <div class="cus-product_imge">
-                              <img src="./images/p1.jpg"
-                                 style="width: 100%; height: 190px; object-fit: cover;" />
-                           </div>
-                           <div class="cus-info" style="margin-top: 10px">
-                              <span class="glyphicon glyphicon-tags"></span> <span>Sản
-                              phẩm: ${productItem.name}</span><br /> <span class="glyphicon glyphicon-usd"></span>
-
-                              <span>Giá:<fmt:formatNumber currencyCode="VND" type="currency" maxFractionDigits="0">${productItem.price}</fmt:formatNumber> </span>
-                           </div>
-                           <div class="cus-fullsize">
-                               <div class="cus-action">
-                                    <a href="tel:0965707022" class="btn btn-success">Mua
-                                    ngay</a>
-                                    <a href="${pageContext.request.contextPath}/product/${productItem.id}" class="btn btn btn-warning">Xem chi tiết</a>
-                                 </div>
-                           </div>
+    <?php
+    use App\Configuration;
+    $config = Configuration::find(1);
+    ?>
+    <div class="container">
+        @include('elements.carousel')
+        <div class="row-fluid clearfix">
+            <ul class="breadcrumb">
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="/product">Sản Phẩm</a></li>
+                <li class="active">{{ $category[0]->name }}</li>
+            </ul>
+        </div>
+        <div class="row-fluid clearfix">
+            <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
+                <div class="panel-heading"><h2>{{ $category[0]->name }}</h2></div>
+            </div>
+            @foreach($products as $itemProduct)
+                <div class="col-xs-12 col-sm-6 col-md-3 cus-layout">
+                    <div class="img-thumbnail product col-xs-12">
+                        <div class="cus-product_imge">
+                            <img class="lazy" data-src="{{ asset($itemProduct->file_path) }}"
+                                 style="width: 100%; height: 190px; object-fit: cover;" name="{{$itemProduct->name}}" alt="{{$itemProduct->name}}"/>
                         </div>
-                     </div>
-               </c:forEach>
-         </div>
+                        <div class="cus-info" style="margin-top: 10px">
+                            <span class="glyphicon glyphicon-tags"></span> <span>{{$itemProduct->name}}</span><br/>
+                            <span class="glyphicon glyphicon-earphone"></span>
+                            <span>
 
-
-</div>
+                             Điện thoại:
+                             {{$config->phonenumber}}
+                          </span>
+                        </div>
+                        <div class="cus-fullsize">
+                            <div class="cus-action">
+                                <a href="tel:{{$config->phonenumber}}" class="btn btn-success">Gọi ngay</a>
+                                <a href="/product/{{ $itemProduct->id }}" class="btn btn btn-warning">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        {!! $products->links() !!}
+        <script>
+            const url_string = window.location.href; //window.location.href
+            $("ul.pagination li").on("click", function () {
+                var url = new URL(url_string);
+                var category = url.searchParams.get("category");
+                if (category != null || category != undefined) {
+                    let a = $(this).find("a");
+                    let ahref = a.attr("href");
+                    a.attr("href", ahref + "&category=" + category);
+                }
+            });
+        </script>
+    </div>
 @endsection

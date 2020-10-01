@@ -8,24 +8,20 @@
    <!-- Wrapper for slides -->
    <div class="carousel-inner">
       <div class="item active">
-         <img src="{{ asset('images/xe1.jpg') }}" alt="Los Angeles"
-            style="width: 100%; height: 500px; object-fit: cover;">
+         <img src="{{ asset('images/xe1.jpg') }}" alt="Xe xuc lat mien trung "
+            style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe2.jpg') }}" alt="Chicago"
-            style="width: 100%; height: 500px; object-fit: cover;">
+         <img src="{{ asset('images/xe2.jpg') }}" alt="xe xuc lat da nang"
+            style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe3.jpg') }}" alt="New york"
-            style="width: 100%; height: 500px; object-fit: cover;">
+         <img src="{{ asset('images/xe3.jpg') }}" alt="xe co gioi da nang"
+            style=" object-fit: cover;">
       </div>
       <div class="item">
-         <img src="{{ asset('images/xe4.jpg') }}" alt="New york"
-            style="width: 100%; height: 500px; object-fit: cover;">
-      </div>
-      <div class="item">
-         <img src="{{ asset('images/xe5.jpg') }}" alt="New york"
-            style="width: 100%; height: 500px; object-fit: cover;">
+         <img src="{{ asset('images/xe5.jpg') }}" alt="xe xuc lat"
+            style="object-fit: cover;">
       </div>
    </div>
    <!-- Left and right controls -->
