@@ -20,10 +20,10 @@
                   <!-- Links -->
                   <h5 class="text-uppercase">Truy cập nhanh</h5>
                   <ul class="list-unstyled">
-                     <li><a href="/product">SẢN PHẨM</a></li>
-                     <li><a href="/introduce">GIỚI THIỆU</a></li>
-                     <li><a href="/contact">TƯ VẤN</a></li>
-                     <li><a href="/">TRANG CHỦ</a></li>
+                     <li><a href="{{ url('/product') }}">SẢN PHẨM</a></li>
+                     <li><a href="{{ url('/introduce') }}">GIỚI THIỆU</a></li>
+                     <li><a href="{{ url('/contact') }}">TƯ VẤN</a></li>
+                     <li><a href="{{ url('/') }}">TRANG CHỦ</a></li>
                   </ul>
                </div>
                <!-- Grid column -->
@@ -46,7 +46,7 @@
          <!-- Footer Links -->
          <!-- Copyright -->
          <div class="footer-copyright text-center py-3">
-            © 2020 Copyright: <a href="/" >{{$config->website}}</a>
+            © 2020 Copyright: <a href="{{ url('/') }}" >{{$config->website}}</a>
          </div>
          <!-- Copyright -->
       </footer>

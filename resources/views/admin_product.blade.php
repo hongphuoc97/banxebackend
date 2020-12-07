@@ -6,15 +6,15 @@
                 <li class="list-group-item panelactive"><span class="glyphicon glyphicon-menu-hamburger"> </span> ĐIỀU
                     HƯỚNG
                 </li>
-                <li class="list-group-item "><a href="/admin">DANH MỤC</a></li>
-                <li class="list-group-item active"><a href="/admin/product">SẢN PHẨM</a></li>
-                <li class="list-group-item"><a href="/admin/config">CẤU HÌNH</a></li>
+                <li class="list-group-item"><a href="{{ url('/admin') }}">DANH MỤC</a></li>
+                <li class="list-group-item active"><a href="{{ url('/admin/product') }}">SẢN PHẨM</a></li>
+                <li class="list-group-item"><a href="{{ url('/admin/config') }}">CẤU HÌNH</a></li>
             </ul>
         </div>
         <!-- <div class="row-fluid clearfix"> -->
         <div class="col-md-9 clearfix">
             <div class="panel panel-primary" style="margin: 10px 0 10px 0">
-                <div class="panel-heading">DANH MỤC</div>
+                <div class="panel-heading">SẢN PHẨM</div>
             </div>
             <div class="container-fluid">
                 @if ($message = Session::get('success'))

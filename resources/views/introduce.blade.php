@@ -13,13 +13,13 @@
                 <li class="list-group-item panelactive"><span class="glyphicon glyphicon-menu-hamburger"> </span>DANH MỤC SẢN PHẨM
                 </li>
                 @foreach($categories as $item)
-                    <li class="list-group-item"><a href="/product?category={{$item->id}}">{{$item->name}}</a></li>
+                    <li class="list-group-item"><a href="{{ url('/product?category='.$item->id) }}">{{$item->name}}</a></li>
                 @endforeach
             </ul>
             <div class="panel panel-default">
                 <div class="panel-heading"><b>THANH TOÁN NHANH GỌN</b></div>
                 <div class="panel-body border border-primary">
-                    <img src="./images/thanhtoan.png"/>
+                    <img src="{{ asset('/images/thanhtoan.png')}}"/>
                     <hr>
                     <p>Công ty hỗ trợ nhiều hình thức thanh toán nhanh chóng, đảm bảo an toàn và phù hợp với điều kiện
                         của khách hàng.</p>
@@ -28,7 +28,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>PHỤ TÙNG CHÍNH HÃNG</b></div>
                 <div class="panel-body border border-primary">
-                    <img src="./images/settings-tools.png"/>
+                    <img src="{{ asset('/images/settings-tools.png')}}"/>
                     <hr>
                     <p>Công ty đảm bảo cung cấp đầy đủ phụ tùng chính hãng giá thấp nhất, đảm bảo máy móc vận hành lâu
                         dài ổn định công việc của khách hàng.</p>
@@ -37,7 +37,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>HỖ TRỢ KỸ THUẬT TRỌN ĐỜI</b></div>
                 <div class="panel-body border border-primary">
-                    <img src="./images/24-hours-phone-service.png"/>
+                    <img src="{{ asset('/images/24-hours-phone-service.png')}}"/>
                     <hr>
                     <p>Công ty tự hào với đội ngũ kỹ thuật lâu năm cam kết hỗ trợ tư vấn, sửa chữa bảo dưỡng máy tận nơi
                         theo yêu cầu của khách hàng.</p>
@@ -49,7 +49,7 @@
             <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
                 <div class="panel-heading"><h1>GIỚI THIỆU</h1></div>
             </div>
-            <h4><b>Chúng tôi, công ty máy công trình SDLG liên doanh VOLVO<b></h4>
+            <h4><b>Chúng tôi, công ty máy công trình SDLG liên doanh VOLVO</b></h4>
             <p>
                 Là nhà nhập khẩu chuyên nghiệp các sản phẩm máy xúc lật SDLG, máy xúc lật nhỏ, máy xúc lật chui hầm,
                 máy nâng đá, máy xúc đào…

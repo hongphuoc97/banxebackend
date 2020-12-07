@@ -8,13 +8,13 @@
                     MỤC SẢN PHẨM
                 </li>
                 @foreach($categories as $item)
-                    <li class="list-group-item"><a href="/product?category={{$item->id}}">{{$item->name}}</a></li>
+                    <li class="list-group-item"><a href="{{ url('/product?category='.$item->id) }}">{{$item->name}}</a></li>
                 @endforeach
             </ul>
             <div class="panel panel-default">
                 <div class="panel-heading"><b>THANH TOÁN NHANH GỌN</b></div>
                 <div class="panel-body border border-primary">
-                    <img src="./images/thanhtoan.png" alt="thanh toan don gian"/>
+                    <img src="{{ asset('/images/thanhtoan.png') }}" alt="thanh toan don gian"/>
                     <hr>
                     <p>Công ty hỗ trợ nhiều hình thức thanh toán nhanh chóng, đảm bảo an toàn và phù hợp với điều kiện
                         của khách hàng.</p>
@@ -23,7 +23,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>PHỤ TÙNG CHÍNH HÃNG</b></div>
                 <div class="panel-body border border-primary">
-                    <img src="./images/settings-tools.png" alt="Phu tung chinh hang"/>
+                    <img src="{{ asset('/images/settings-tools.png') }}" alt="Phu tung chinh hang"/>
                     <hr>
                     <p>Công ty đảm bảo cung cấp đầy đủ phụ tùng chính hãng giá thấp nhất, đảm bảo máy móc vận hành lâu
                         dài ổn định công việc của khách hàng.</p>
@@ -32,7 +32,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>HỖ TRỢ KỸ THUẬT TRỌN ĐỜI</b></div>
                 <div class="panel-body border border-primary">
-                    <img src="./images/24-hours-phone-service.png" alt="Ho tro tron doi"/>
+                    <img src="{{ asset('/images/24-hours-phone-service.png') }}" alt="Ho tro tron doi"/>
                     <hr>
                     <p>Công ty tự hào với đội ngũ kỹ thuật lâu năm cam kết hỗ trợ tư vấn, sửa chữa bảo dưỡng máy tận nơi
                         theo yêu cầu của khách hàng.</p>
@@ -69,7 +69,7 @@
             @foreach ($categories as $category)
                 @if(count($category->product) > 0)
                         <div class="panel panel-primary" style="margin: 10px 0px 0px 0px">
-                            <div class="panel-heading"><a href="/product?category={{$category->id}}"><h3>{{$category->name}}</h3></a>
+                            <div class="panel-heading"><a href="{{ url('/product?category='.$category->id) }}"><h3>{{$category->name}}</h3></a>
                             </div>
                         </div>
                 @endif
@@ -95,7 +95,7 @@
                                 <div class="cus-fullsize">
                                     <div class="cus-action">
                                         <a href="tel:{{$config->phonenumber}}" class="btn btn-success">Gọi ngay</a>
-                                        <a href="/product/{{ $itemProduct->id }}" class="btn btn btn-warning">Xem chi
+                                        <a href="{{ url('/product/'.$itemProduct->id) }}" class="btn btn btn-warning">Xem chi
                                             tiết</a>
                                     </div>
                                 </div>
