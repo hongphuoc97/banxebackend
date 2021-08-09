@@ -10,8 +10,8 @@
          <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
          </button>
-         <a class="navbar-left" href="/"><img src="/images/logo1.png" alt="SDLG logo" style="width: 58px;"/></a>
-         <a class="navbar-left" href="/"><img src="/images/logo2.png" alt="Hoang Giai logo"style="width: 58px;"/></a>
+         <a class="navbar-left" href="/"><img src="{{ asset("/images/logo1.png") }}" alt="SDLG logo" style="width: 58px;"/></a>
+         <a class="navbar-left" href="/"><img src="{{ asset("/images/logo2.png") }}" alt="Hoang Giai logo"style="width: 58px;"/></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav">
@@ -25,22 +25,22 @@
                    $categories = Categories::orderBy('order_value', 'ASC')->get();
                  ?>
                  @foreach ($categories as $item)
-                      <li><a href="/product?category={{$item->id}}">{{ $item->name }}</a></li>
+                      <li><a href="{{ url('/product?category='.$item->id)}}">{{ $item->name }}</a></li>
                  @endforeach
                </ul>
             </li>
-            <li class=""><a href="/contact">TƯ VẤN MUA XE</a></li>
-            <li class=""><a href="/introduce">GIỚI THIỆU</a></li>
+            <li class=""><a href="{{ url('/contact')}}">TƯ VẤN MUA XE</a></li>
+            <li class=""><a href="{{ url('/introduce')}}">GIỚI THIỆU</a></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
             <li>
-               <a href="/admin">
+               <a href="{{ url('/admin')}}">
                <span class="glyphicon glyphicon-user"></span> xin chào: {{Auth::user()->email}}
                </a>
             </li>
             <li >
-               <a href="/logout">
+               <a href="{{ url('/logout')}}">
                <span class="glyphicon glyphicon glyphicon-log-out"></span>
                Đăng xuất</a>
             </li>
@@ -50,7 +50,7 @@
             </li>
             @endif
          </ul>
-         <form class="navbar-form navbar-left" method="get" action="/product">
+         <form class="navbar-form navbar-left" method="get" action="{{ url('/product')}}">
             <div class="input-group">
                <input type="text" class="form-control" aria-label="search-query"
                   placeholder="Nhập từ khóa mà bạn cần tìm kiếm..." name="q">

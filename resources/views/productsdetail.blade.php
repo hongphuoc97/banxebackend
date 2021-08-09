@@ -8,8 +8,8 @@
         @include('elements.carousel')
         <div class="row-fluid clearfix">
             <ul class="breadcrumb">
-                <li><a href="#">Trang Chủ</a></li>
-                <li><a href="/product">Sản Phẩm</a></li>
+                <li><a href="{{ url('/') }}">Trang Chủ</a></li>
+                <li><a href="{{ url('/product') }}">Sản Phẩm</a></li>
                 <li class="active">{{ $product->name}}</li>
             </ul>
         </div>
@@ -82,7 +82,7 @@
                         <div class="cus-fullsize">
                             <div class="cus-action">
                                 <a href="tel:{{$config->phonenumber}}" class="btn btn-success">Gọi ngay</a>
-                                <a href="/product/{{ $itemProduct->id}}" class="btn btn btn-warning">Xem chi tiết</a>
+                                <a href="{{ url('/product/'.$itemProduct->id) }}" class="btn btn btn-warning">Xem chi tiết</a>
                             </div>
                         </div>
                     </div>
